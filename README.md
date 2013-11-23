@@ -19,4 +19,4 @@ For reasons unbeknownst to me, when you select an object with the OPPathFinder c
 Get the latest package [here](https://www.dropbox.com/s/vp7iws704kkykow/openpath.zip)
 
 ### Why is this not C#?
-I know, I know, it's more popular, but I prefer the UnityScript syntax. When I am done with my project and have some free time in 6-7 years or so, when Unity has probably become completely irrelevant, I'll rewrite it in C# If anyone wants to rewrite it, I'll gladly do a fork of it on GitHub and make them a contributor.
+Long story short, I know C# perfectly well, but I prefer the UnityScript syntax. If anyone wants to spend some time converting this to C# and maintaining it, I'll happily add them as a contributor here on GitHub. It will work with any type of project though, just keep the OpenPath folder in the Asset root.
