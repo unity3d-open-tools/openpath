@@ -16,8 +16,7 @@ For reasons unbeknownst to me, when you select an object with the OPPathFinder c
 - Free & open source!
 
 ### How to get it?
-Get the latest package with examples [here](https://www.dropbox.com/s/vp7iws704kkykow/openpath.zip)  
-For the absolute latest code, just clone from this repo.
+Get the latest package with examples [here](https://github.com/mrzapp/openpath/archive/master.zip)  
 
 ### Why is this not C#?
 Long story short, I know C# perfectly well, but I prefer the UnityScript syntax. If anyone wants to spend some time converting this to C# and maintaining it, I'll happily add them as a contributor here on GitHub. It will work with any type of project though, just keep the OpenPath folder in the Asset root.
