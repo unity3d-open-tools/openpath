@@ -137,7 +137,7 @@ public class OPGridMap extends OPMap {
 		thisNode.neighbors.Clear ();
 		
 		for ( var thatNode : OPNode in nodes ) {			
-			if ( ( thisNode.position - thatNode.position ).sqrMagnitude <= spacing * 1.1 ) {
+			if ( ( thisNode.position - thatNode.position ).sqrMagnitude <= spacing * 2.1 ) {
 				thisNode.neighbors.Add ( thatNode );
 			}
 		}
