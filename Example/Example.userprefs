@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OpenPath\OPScanner.js">
+    <Files>
+      <File FileName="Assets\OpenPath\OPScanner.js" Line="45" Column="3" />
+      <File FileName="Assets\OpenPath\OPMap.js" Line="140" Column="80" />
+      <File FileName="Assets\OpenPath\OPPathFinder.js" Line="105" Column="2" />
+      <File FileName="Assets\OpenPath\OPAStar.js" Line="130" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
