@@ -1,11 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OpenPath\OPScanner.js">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\testing\Assets\OpenGUI\Scripts\OGWidget.js">
     <Files>
-      <File FileName="Assets\OpenPath\OPScanner.js" Line="45" Column="3" />
-      <File FileName="Assets\OpenPath\OPMap.js" Line="140" Column="80" />
-      <File FileName="Assets\OpenPath\OPPathFinder.js" Line="105" Column="2" />
-      <File FileName="Assets\OpenPath\OPAStar.js" Line="130" Column="2" />
+      <File FileName="..\..\testing\Assets\OpenGUI\Scripts\OGWidget.js" Line="37" Column="57" />
+      <File FileName="..\..\testing\Assets\OpenGUI\Scripts\OGRoot.js" Line="16" Column="18" />
+      <File FileName="..\..\testing\Assets\OpenGUI\Scripts\OGSkin.js" Line="8" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
