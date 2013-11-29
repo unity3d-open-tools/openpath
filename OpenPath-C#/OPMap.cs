@@ -8,11 +8,11 @@ public enum OPMapType
     Grid, WayPoint, NavMesh
 }
 
-public class OPMap : MonoBehaviour {
+public class OPMap {
 
     public OPNode[] nodes = null;
 
-    OPNode GetNode(Vector3 position)
+    public OPNode GetNode(Vector3 position)
     {
         foreach (OPNode node in nodes)
         {
@@ -37,12 +37,12 @@ public class OPMap : MonoBehaviour {
         return System.Array.IndexOf(nodes, node);
     }
 
-    List<OPNode> GetNeighbors(OPNode node)
+    public List<OPNode> GetNeighbors(OPNode node)
     {
         return node.neighbors;
     }
 
-    void Reset()
+    public void Reset()
     {
         foreach ( OPNode n in nodes ) {
 			if ( n != null) {
@@ -54,7 +54,7 @@ public class OPMap : MonoBehaviour {
 
 public class OPNavMeshMap : OPMap
 {
-    void OPNavMeshMap(OPNavMesh navMesh)
+    public OPNavMeshMap(OPNavMesh navMesh)
     {
         nodes = navMesh.GetNodes();
 
@@ -64,7 +64,7 @@ public class OPNavMeshMap : OPMap
 
 public class OPWayPointMap : OPMap
 {
-    void OPWayPointMap(OPWayPoint[] nodeContainers)
+    public OPWayPointMap(OPWayPoint[] nodeContainers)
     {
         List<OPNode> tempList = new List<OPNode>();
 
@@ -87,7 +87,7 @@ public class OPGridMap : OPMap
 {
     float spacing;
 
-    void OPGridMap(Vector3 start, Vector3 size, float gridSpacing, LayerMask layerMask)
+    public OPGridMap(Vector3 start, Vector3 size, float gridSpacing, LayerMask layerMask)
     {
         List<OPNode> tempList = new List<OPNode>();
 

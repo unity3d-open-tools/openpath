@@ -16,10 +16,12 @@ public class OPPriorityQueue : IComparer {
         return nodes.Count;
     }
 
-    public int Compare(OPNode nodeA, OPNode nodeB)
+    public int Compare(object nodeA, object nodeB)
     {
-        if (nodeA.estimatedTotalCost < nodeB.estimatedTotalCost) { return -1; }
-        else if (nodeA.estimatedTotalCost > nodeB.estimatedTotalCost) { return 1; }
+        OPNode nA = (OPNode)nodeA;
+        OPNode nB = (OPNode)nodeB;
+        if (nA.estimatedTotalCost < nB.estimatedTotalCost) { return -1; }
+        else if (nA.estimatedTotalCost > nB.estimatedTotalCost) { return 1; }
         else { return 0; }
     }
 

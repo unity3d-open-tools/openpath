@@ -35,7 +35,7 @@ public class OPNode : IComparable{
         parent = null;
     }
 
-    int CompareTo(System.Object obj)
+    public int CompareTo(object obj)
     {
         OPNode mn = (OPNode)obj;
 

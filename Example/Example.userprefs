@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OpenPath\OPMap.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OpenPath\OPPriorityQueue.js">
     <Files>
-      <File FileName="Assets\OpenPath\OPAStar.js" Line="128" Column="43" />
-      <File FileName="Assets\OpenPath\OPNode.js" Line="29" Column="19" />
-      <File FileName="Assets\OpenPath\OPPriorityQueue.js" Line="35" Column="1" />
-      <File FileName="Assets\OpenPath\OPMap.js" Line="133" Column="25" />
+      <File FileName="Assets\OpenPath\OPScanner.js" Line="122" Column="15" />
+      <File FileName="Assets\OpenPath\OPMap.js" Line="84" Column="15" />
+      <File FileName="Assets\OpenPath\OPAStar.js" Line="86" Column="1" />
+      <File FileName="Assets\OpenPath\OPNode.js" Line="1" Column="1" />
+      <File FileName="Assets\OpenPath\OPPriorityQueue.js" Line="5" Column="34" />
+      <File FileName="Assets\OpenPath\OPWayPoint.js" Line="20" Column="43" />
+      <File FileName="c:\Users\Landon\Desktop\GitHub\openpath\Example\Assets\OpenPath-C#\OPMap.cs" Line="97" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

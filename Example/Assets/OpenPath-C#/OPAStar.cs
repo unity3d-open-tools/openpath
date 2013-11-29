@@ -9,7 +9,7 @@ public class OPAStar : MonoBehaviour
     static OPPriorityQueue openList;
     static OPPriorityQueue closedList;
 
-    static List<OPNode> Search(OPNode start, OPNode goal, OPMap map, float heuristicWeight)
+    public static List<OPNode> Search(OPNode start, OPNode goal, OPMap map, float heuristicWeight)
     {
         Debug.Log("OPAStar | Searching for best route from " + start.position + " to " + goal.position);
 
@@ -88,6 +88,7 @@ public class OPAStar : MonoBehaviour
         {
             //path complete
             Debug.Log("OPAStar | Path found!");
+            return GetPath(currentNode);
         }
     }
 
