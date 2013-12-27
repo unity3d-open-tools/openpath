@@ -1,16 +1,17 @@
 #pragma strict
 
 class OPScanner extends MonoBehaviour {
-	var scanOnEnable : boolean = true;
-	var layerMask : LayerMask;
-	var gridSize : Vector3;
-	var mapType : OPMapType;
-	var map : OPMap = null;
-	var heuristic : float = 10.0;
-	var spacing : float = 1.0;
-	var bounds : Bounds;
+	public var scanOnEnable : boolean = true;
+	public var layerMask : LayerMask;
+	public var mapType : OPMapType;
+	public var map : OPMap = null;
+	public var heuristic : float = 10.0;
+	public var spacing : float = 1.0;
 	
-	function GetBounds () {
+	private var bounds : Bounds;
+	private var gridSize : Vector3;
+	
+	public function GenerateBounds () {
 	    var bounds : Bounds = new Bounds ( Vector3.zero, Vector3.zero );
 	    var pos : Vector3 = Vector3.zero;
 	    
@@ -24,12 +25,12 @@ class OPScanner extends MonoBehaviour {
 		gridSize = new Vector3 ( Mathf.Round ( bounds.size.x / spacing ) + 1, Mathf.Round ( bounds.size.y / spacing ) + 1, Mathf.Round ( bounds.size.z / spacing ) + 1 );
 	}
 	
-	function SetMap ( nodes : OPNode[] ) {
+	public function SetMap ( nodes : OPNode[] ) {
 		map = new OPMap ();
 		map.nodes = nodes;
 	}
 	
-	function SetMap () {
+	public function GenerateMap () {
 		if ( mapType == OPMapType.Grid ) {
 			map = new OPGridMap ( transform.position, gridSize, spacing, layerMask );
 		
@@ -43,26 +44,24 @@ class OPScanner extends MonoBehaviour {
 		
 		}
 	}
-	
-	function Init () : IEnumerator {
+
+	public function Clear () {
+		map = null;
+
+		this.transform.position = Vector3.zero;
+
+		Debug.Log ( "OPScanner | Cleared nodes" );
+	}
+
+	public function Scan () {
+		Clear ();
+		
 		Debug.Log ( "OPScanner | Scanning for navigation nodes as " + mapType + "..." );
 		
-		var timeTaken : float = Time.time;
+		GenerateBounds ();
+		GenerateMap ();
 		
-		yield WaitForEndOfFrame ();
-	
-		GetBounds ();
-		SetMap ();
-		
-		yield WaitForEndOfFrame ();
-		
-		timeTaken = ( Time.time - timeTaken ) * 10;
-		
-		Debug.Log ( "OPScanner | ...scan completed in " + timeTaken + " seconds" );
-	}
-	
-	function Scan () {
-		StartCoroutine ( Init () );
+		Debug.Log ( "OPScanner | ...scan completed" );
 	}
 	
 	function Start () {
@@ -71,7 +70,7 @@ class OPScanner extends MonoBehaviour {
 		}
 	}
 	
-	function FindPath ( start : Vector3, goal : Vector3 ) : List.<OPNode> {
+	public function FindPath ( start : Vector3, goal : Vector3 ) : List.<OPNode> {
 		var here : OPNode = GetClosestNode ( start );
 		var there : OPNode = GetClosestNode ( goal );
 		var list : List.<OPNode> = OPAStar.Search ( here, there, map, heuristic );
@@ -94,7 +93,7 @@ class OPScanner extends MonoBehaviour {
 		for ( var n : OPNode in map.nodes ) {		
 			if ( n == null ) { continue; }
 			
-			Gizmos.color = new Color ( 1, 1, 1, 0.5 );
+			Gizmos.color = new Color ( 0, 0.8, 1, 1 );
 			
 			if ( n.parent ) { Gizmos.color = Color.red; }
 			if ( n.active ) { Gizmos.color = Color.green; }
@@ -114,7 +113,7 @@ class OPScanner extends MonoBehaviour {
 		}
 	}
 	
-	function GetClosestNode ( pos : Vector3 ) : OPNode {
+	public function GetClosestNode ( pos : Vector3 ) : OPNode {
 		var shortestDistance : float = 100;
 		var node : OPNode;
 		

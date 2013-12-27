@@ -2,11 +2,16 @@
 
 class OPAStar {
 	// Lists
-	static var openList : OPPriorityQueue;
-	static var closedList : OPPriorityQueue;
+	private static var openList : OPPriorityQueue;
+	private static var closedList : OPPriorityQueue;
 			
 	// Find a path and return a list of each step
-	static function Search ( start : OPNode, goal : OPNode, map : OPMap, heuristicWeight : float ) : List.<OPNode> {
+	public static function Search ( start : OPNode, goal : OPNode, map : OPMap, heuristicWeight : float ) : List.<OPNode> {
+		if ( start == null || goal == null ) {
+			Debug.LogError ( "OPAStar | Either target or goal unspecified. Perhaps the scanner has not been initialised?" );
+			return;
+		}
+		
 		Debug.Log ( "OPAstar | Searching for best route from " + start.position + " to " + goal.position );
 		
 		// Add the starting node to the open list
@@ -105,6 +110,7 @@ class OPAStar {
 		while ( node != null ) {
 			if ( counter > 100 ) {
 				Debug.LogError ( "OpenPath | Screech! Failsafe engaged." );
+				path = null;
 				return new List.<OPNode>();
 			};
 			

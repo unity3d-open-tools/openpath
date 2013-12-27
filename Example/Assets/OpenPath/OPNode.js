@@ -3,13 +3,13 @@
 import System;
 
 class OPNode implements IComparable {
-	var position : Vector3;
-	var estimatedTotalCost : float;
-	var costSoFar : float;
-	var size : int;	
-	var parent : OPNode;
-	var active : boolean = false;
-	var neighbors : List.<OPNode> = new List.<OPNode>();
+	public var position : Vector3;
+	public var estimatedTotalCost : float;
+	public var costSoFar : float;
+	public var size : int;	
+	public var parent : OPNode;
+	public var active : boolean = false;
+	public var neighbors : List.<OPNode> = new List.<OPNode>();
 	
 	function OPNode () {
 		estimatedTotalCost = 0.0;
@@ -31,15 +31,15 @@ class OPNode implements IComparable {
 	}
 	
 	function CompareTo ( obj : System.Object ) : int { 
-	    var mn : OPNode = obj as OPNode;	    
+		var mn : OPNode = obj as OPNode;	    
 	    
-	    if ( this.estimatedTotalCost < mn.estimatedTotalCost ) {
+		if ( this.estimatedTotalCost < mn.estimatedTotalCost ) {
 			return -1;
 		} else if ( this.estimatedTotalCost > mn.estimatedTotalCost ) {
 			return 1;
 		} else {
 			return 0;
-    	}
-    } 
+		}
+	} 
 	
 }

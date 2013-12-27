@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OpenPath\OPMap.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\vongott\vongott\Assets\OpenGUI\Editor\OGSkinInspector.js">
     <Files>
-      <File FileName="Assets\OpenPath\OPAStar.js" Line="128" Column="43" />
-      <File FileName="Assets\OpenPath\OPNode.js" Line="29" Column="19" />
-      <File FileName="Assets\OpenPath\OPPriorityQueue.js" Line="35" Column="1" />
-      <File FileName="Assets\OpenPath\OPMap.js" Line="133" Column="25" />
+      <File FileName="Assets\OpenPath\OPScanner.js" Line="54" Column="16" />
+      <File FileName="..\..\vongott\vongott\Assets\OpenGUI\Scripts\OGTabs.js" Line="70" Column="22" />
+      <File FileName="..\..\vongott\vongott\Assets\OpenGUI\Editor\OGSkinInspector.js" Line="401" Column="1" />
+      <File FileName="..\..\vongott\vongott\Assets\OpenGUI\Editor\OGWidgetInspector.js" Line="7" Column="43" />
+      <File FileName="..\..\vongott\vongott\Assets\OpenGUI\Scripts\OGSkin.js" Line="41" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
