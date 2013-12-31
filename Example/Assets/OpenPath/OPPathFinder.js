@@ -66,8 +66,8 @@ class OPPathFinder extends MonoBehaviour {
 		//Loom.RunAsync ( function () {
 			var newNodes : List.<OPNode> = scanner.FindPath ( start, goal );
 									
-			for ( var node : OPNode in newNodes ) {
-				node.active = true;
+			for ( var i : int = 0; i < newNodes.Count; i++ ) {
+				newNodes[i].active = true;
 			}
 			
 		//	Loom.QueueOnMainThread ( function () {

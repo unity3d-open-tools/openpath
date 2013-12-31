@@ -88,7 +88,8 @@ public class OPWayPointMap extends OPMap {
 //////////////////
 public class OPGridMap extends OPMap {	
 	var spacing : float;
-	
+	private var count : int = 0;
+
 	function OPGridMap ( start : Vector3, size : Vector3, gridSpacing : float, layerMask : LayerMask ) {
 		var tempList : List.< OPNode > = new List.< OPNode >();
 		
@@ -115,7 +116,7 @@ public class OPGridMap extends OPMap {
 		nodes = tempList.ToArray();	
 		
 		for ( var i : int = 0; i < nodes.Length; i++ ) {
-			FindNeighbors ( nodes[i] );
+			FindNeighbors ( nodes[0] );
 		}
 	}
 	
@@ -156,7 +157,7 @@ public class OPGridMap extends OPMap {
 			var thatNode : OPNode = nodes[i];
 
 			if ( ( thisNode.position - thatNode.position ).sqrMagnitude <= spacing * 2.1 ) {
-				thisNode.neighbors.Add ( thatNode );
+			//	thisNode.neighbors.Add ( thatNode );
 			}
 		}
 	}

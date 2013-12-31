@@ -10,7 +10,8 @@ class OPScanner extends MonoBehaviour {
 	
 	private var bounds : Bounds;
 	private var gridSize : Vector3;
-	
+	private var generated : boolean = false;
+
 	public function GenerateBounds () {
 	    var bounds : Bounds = new Bounds ( Vector3.zero, Vector3.zero );
 	    var pos : Vector3 = Vector3.zero;
@@ -47,6 +48,7 @@ class OPScanner extends MonoBehaviour {
 
 	public function Clear () {
 		map = null;
+		generated = false;
 
 		this.transform.position = Vector3.zero;
 
@@ -54,8 +56,13 @@ class OPScanner extends MonoBehaviour {
 	}
 
 	public function Scan () {
-		Clear ();
-		
+		if ( generated ) {
+			Debug.LogWarning ( "OPScanner | Need to clear nodes first!" );
+			return;
+		} else {
+			generated = true;
+		}
+
 		Debug.Log ( "OPScanner | Scanning for navigation nodes as " + mapType + "..." );
 		
 		GenerateBounds ();
