@@ -97,7 +97,9 @@ class OPScanner extends MonoBehaviour {
 			Gizmos.DrawWireCube ( bounds.center, bounds.size );
 		}
 		
-		for ( var n : OPNode in map.nodes ) {		
+		for ( var i : int = 0; i < map.nodes.Length; i++ ) {
+			var n : OPNode = map.nodes[i];
+
 			if ( n == null ) { continue; }
 			
 			Gizmos.color = new Color ( 0, 0.8, 1, 1 );
@@ -106,11 +108,13 @@ class OPScanner extends MonoBehaviour {
 			if ( n.active ) { Gizmos.color = Color.green; }
 			if ( n.neighbors.Count < 1 ) { Gizmos.color = Color.red; }
 			
-			Gizmos.DrawCube ( n.position, new Vector3 ( 0.1, 0.1, 0.1 ) );
+			Gizmos.DrawCube ( n.position, new Vector3 ( 0.25, 0.25, 0.25 ) );
 			
 			Gizmos.color = Color.green;
 			
-			for ( var nb : OPNode in n.neighbors ) {
+			for ( var o : int = 0; o < n.neighbors.Count; o++ ) {
+				var nb : OPNode = n.neighbors[o];
+				
 				if ( n.active && nb.active ) {
 					Gizmos.DrawLine ( n.position, nb.position );
 				}
@@ -129,7 +133,7 @@ class OPScanner extends MonoBehaviour {
 			
 			var currentDistance : float = ( pos - (n as OPNode).position ).magnitude;
 			
-			if ( currentDistance < shortestDistance && ( n as OPNode ).neighbors.Count > 0 ) {
+			if ( currentDistance < shortestDistance ) {
 				shortestDistance = currentDistance;
 				node = n as OPNode;
 				

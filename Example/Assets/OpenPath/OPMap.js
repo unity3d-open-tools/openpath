@@ -19,16 +19,6 @@ public class OPMap {
 		return null;
 	}
 	
-	function ListToArray ( list : List.<OPNode> ) : OPNode[] {
-		var newArray : OPNode[] = new OPNode[list.Count];
-		
-		for ( var i : int = 0; i < list.Count; i++ ) {
-			newArray[i] = list[i];
-		}
-		
-		return newArray;
-	}
-	
 	function GetIndex ( node : OPNode ) : int {
 		return System.Array.IndexOf ( nodes, node );
 	}
@@ -113,11 +103,9 @@ public class OPGridMap extends OPMap {
 			}
 		}
 		
-		nodes = tempList.ToArray();	
-		
-		for ( var i : int = 0; i < nodes.Length; i++ ) {
-			FindNeighbors ( nodes[0] );
-		}
+		nodes = tempList.ToArray();
+
+		FindNeighbors ();	
 	}
 	
 	// Raycast continuously through several objects
@@ -152,13 +140,23 @@ public class OPGridMap extends OPMap {
 	}
 
 	// Locate neighbouring nodes
-	private function FindNeighbors ( thisNode : OPNode ) {
-		for ( var i : int = 0; i < nodes.Length; i++ ) {			
-			var thatNode : OPNode = nodes[i];
+	private function FindNeighbors () {
+		Loom.RunAsync ( function () {
+			Debug.Log ( "OPGridMap | Finding neighbours..." );
+			
+			for ( var o : int = 0; o < nodes.Length; o++ ) {
+				var thisNode : OPNode = nodes[o];
+				
+				for ( var i : int = 0; i < nodes.Length; i++ ) {			
+					var thatNode : OPNode = nodes[i];
 
-			if ( ( thisNode.position - thatNode.position ).sqrMagnitude <= spacing * 2.1 ) {
-			//	thisNode.neighbors.Add ( thatNode );
+					if ( ( thisNode.position - thatNode.position ).sqrMagnitude <= spacing * 2.1 ) {
+						thisNode.neighbors.Add ( thatNode );
+					}
+				}
 			}
-		}
+
+			Debug.Log ( "OPGridMap | ...all neighbours found!" );
+		} );
 	}
 }

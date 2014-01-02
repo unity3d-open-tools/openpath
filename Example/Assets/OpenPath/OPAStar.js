@@ -34,8 +34,10 @@ class OPAStar {
 			}
 			
 			// Examine each node adjacent to the current node
-			var neighbors : List.<OPNode> = map.GetNeighbors ( currentNode );
-						
+			var neighbors : List.<OPNode>;
+		        
+			neighbors = map.GetNeighbors ( currentNode );
+
 			for ( var nIndex = 0; nIndex != neighbors.Count; nIndex++ ) {		
 				// Get the cost estimate for the end node
 				var endNode : OPNode = neighbors[nIndex] as OPNode;
