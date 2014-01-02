@@ -2,12 +2,15 @@
 
 class OPAStar {
 	// Lists
-	static var openList : OPPriorityQueue;
-	static var closedList : OPPriorityQueue;
+	private static var openList : OPPriorityQueue;
+	private static var closedList : OPPriorityQueue;
 			
 	// Find a path and return a list of each step
-	static function Search ( start : OPNode, goal : OPNode, map : OPMap, heuristicWeight : float ) : List.<OPNode> {
-		var timeTaken : float = Time.time;
+	public static function Search ( start : OPNode, goal : OPNode, map : OPMap, heuristicWeight : float ) : List.<OPNode> {
+		if ( start == null || goal == null ) {
+			Debug.LogError ( "OPAStar | Either target or goal unspecified. Perhaps the scanner has not been initialised?" );
+			return;
+		}
 		
 		Debug.Log ( "OPAstar | Searching for best route from " + start.position + " to " + goal.position );
 		
@@ -31,8 +34,10 @@ class OPAStar {
 			}
 			
 			// Examine each node adjacent to the current node
-			var neighbors : List.<OPNode> = map.GetNeighbors ( currentNode );
-						
+			var neighbors : List.<OPNode>;
+		        
+			neighbors = map.GetNeighbors ( currentNode );
+
 			for ( var nIndex = 0; nIndex != neighbors.Count; nIndex++ ) {		
 				// Get the cost estimate for the end node
 				var endNode : OPNode = neighbors[nIndex] as OPNode;
@@ -82,10 +87,8 @@ class OPAStar {
 			return new List.<OPNode>();
 		
 		} else {
-			// Path complete
-			timeTaken = ( Time.time - timeTaken ) * 10;
-			
-			Debug.Log ( "OPAStar | Path found in " + timeTaken.ToString ( "f2" ) + " seconds" );	
+			// Path complete			
+			Debug.Log ( "OPAStar | Path found!" );	
 			return GetPath ( currentNode );
 
 		}
@@ -109,6 +112,7 @@ class OPAStar {
 		while ( node != null ) {
 			if ( counter > 100 ) {
 				Debug.LogError ( "OpenPath | Screech! Failsafe engaged." );
+				path = null;
 				return new List.<OPNode>();
 			};
 			

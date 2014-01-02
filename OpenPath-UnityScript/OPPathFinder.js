@@ -1,18 +1,18 @@
 #pragma strict
 
 class OPPathFinder extends MonoBehaviour {
-	var currentNode : int = 0;
-	var scanner : OPScanner;
-	var speed : float = 4.0;
-	var stoppingDistance : float = 0.1;
-	var nodeDistance : float = 1.0;
-	var target : Transform;
-	var autoChase : boolean = false;
+	public var currentNode : int = 0;
+	public var scanner : OPScanner;
+	public var speed : float = 4.0;
+	public var stoppingDistance : float = 0.1;
+	public var nodeDistance : float = 1.0;
+	public var target : Transform;
+	public var autoChase : boolean = false;
 	
-	@HideInInspector var nodes : List.<OPNode> = new List.<OPNode>();
-	@HideInInspector var goal : Vector3;
+	private var nodes : List.<OPNode> = new List.<OPNode>();
+	private var goal : Vector3;
 	
-	function SetGoalAfterSeconds ( s : float ) : IEnumerator {
+	public function SetGoalAfterSeconds ( s : float ) : IEnumerator {
 		yield WaitForSeconds ( s );
 				
 		SetGoal ( target );
@@ -24,7 +24,7 @@ class OPPathFinder extends MonoBehaviour {
 		}
 	}
 	
-	function ClearNodes () {
+	public function ClearNodes () {
 		for ( var node : OPNode in nodes ) {
 			node.active = false;
 			node.parent = null;
@@ -33,7 +33,11 @@ class OPPathFinder extends MonoBehaviour {
 		nodes.Clear ();	
 	}
 	
-	function SetGoal ( t : Transform ) {
+	public function GetCurrentNode () : Vector3 {
+		return nodes[currentNode].position;
+	}
+
+	public function SetGoal ( t : Transform ) {
 		// If there is a goal, create the nodes
 		if ( t ) {
 			SetGoal ( t.position );
@@ -44,7 +48,7 @@ class OPPathFinder extends MonoBehaviour {
 		}
 	}
 	
-	function SetGoal ( v : Vector3 ) {
+	public function SetGoal ( v : Vector3 ) {
 		if ( goal == v ) { return; }
 				
 		ClearNodes ();
@@ -52,25 +56,22 @@ class OPPathFinder extends MonoBehaviour {
 		UpdatePosition ();
 	}
 	
-	function GetGoal () : Vector3 {
+	public function GetGoal () : Vector3 {
 		return goal;
 	}
 		
-	function UpdatePosition () {
+	public function UpdatePosition () {
 		var start : Vector3 = this.transform.position;
 					
-		//Loom.RunAsync ( function () {
-			var newNodes : List.<OPNode> = scanner.FindPath ( start, goal );
+		Loom.RunAsync ( function () {
+			nodes = scanner.FindPath ( start, goal );
 									
-			for ( var node : OPNode in newNodes ) {
-				node.active = true;
+			for ( var i : int = 0; i < nodes.Count; i++ ) {
+				nodes[i].active = true;
 			}
 			
-		//	Loom.QueueOnMainThread ( function () {
-				nodes = newNodes;
-				currentNode = 0;
-		//	} );
-		//} );
+			currentNode = 0;
+		} );
 	}
 	
 	function Update () {
