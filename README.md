@@ -7,8 +7,11 @@ It's an automated, very simple path finding package for Unity. It's based on A* 
 Refer to the example project for a demonstration. You can select the map type in the "Scanner" object, and then activate the corresponding object (NavMeshTest, WayPointTest or GridTest).
 
 ### Screenshots
+#### Grid
 ![](https://raw.githubusercontent.com/mrzapp/openpath/master/Images/grid.jpg)
+#### Waypoint
 ![](https://raw.githubusercontent.com/mrzapp/openpath/master/Images/waypoint.jpg)
+#### Navmesh
 ![](https://raw.githubusercontent.com/mrzapp/openpath/master/Images/navmesh.jpg)
 
 ### WARNING!
