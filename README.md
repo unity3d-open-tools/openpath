@@ -6,6 +6,11 @@ It's an automated, very simple path finding package for Unity. It's based on A* 
 ### How to use it?
 Refer to the example project for a demonstration. You can select the map type in the "Scanner" object, and then activate the corresponding object (NavMeshTest, WayPointTest or GridTest).
 
+### Screenshots
+![](https://raw.githubusercontent.com/mrzapp/openpath/master/Images/grid.jpg)
+![](https://raw.githubusercontent.com/mrzapp/openpath/master/Images/waypoint.jpg)
+![](https://raw.githubusercontent.com/mrzapp/openpath/master/Images/navmesh.jpg)
+
 ### WARNING!
 For reasons unbeknownst to me, when you select an object with the OPPathFinder component on it, and the Unity Inspector is visible, there is a huge memory leak in Unity, causing the whole environment to come to a crawl. Select any other object in the scene (or unfocus/disable the inspector temporarily) and it's fine.
 
