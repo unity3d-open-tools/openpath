@@ -7,7 +7,7 @@ public enum OPMapType {
 }
 
 public class OPMap {
-	var nodes : OPNode[] = null;
+	@NonSerialized public var nodes : OPNode[] = null;
 
 	function GetNode ( position : Vector3 ) : OPNode {
 		for ( var node : OPNode in nodes ) {
@@ -141,8 +141,6 @@ public class OPGridMap extends OPMap {
 
 	// Locate neighbouring nodes
 	private function FindNeighbors () {
-		Debug.Log ( "OPGridMap | Finding neighbours..." );
-		
 		for ( var o : int = 0; o < nodes.Length; o++ ) {
 			var thisNode : OPNode = nodes[o];
 			
@@ -154,7 +152,5 @@ public class OPGridMap extends OPMap {
 				}
 			}
 		}
-
-		Debug.Log ( "OPGridMap | ...all neighbours found!" );
 	}
 }

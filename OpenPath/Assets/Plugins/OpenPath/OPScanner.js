@@ -2,15 +2,18 @@
 
 class OPScanner extends MonoBehaviour {
 	public var scanOnEnable : boolean = true;
+	public var searching : boolean = false;
 	public var layerMask : LayerMask;
 	public var mapType : OPMapType;
 	public var map : OPMap = null;
 	public var heuristic : float = 10.0;
 	public var spacing : float = 1.0;
+	public var maxCycles : int = 50;
 	
 	private var bounds : Bounds;
 	private var gridSize : Vector3;
 	private var generated : boolean = false;
+	private var astar : OPAStar = new OPAStar ();
 
 	public function GenerateBounds () {
 	    var bounds : Bounds = new Bounds ( Vector3.zero, Vector3.zero );
@@ -51,8 +54,6 @@ class OPScanner extends MonoBehaviour {
 		generated = false;
 
 		this.transform.position = Vector3.zero;
-
-		//Debug.Log ( "OPScanner | Cleared nodes" );
 	}
 
 	public function Scan () {
@@ -63,12 +64,8 @@ class OPScanner extends MonoBehaviour {
 			generated = true;
 		}
 
-		//Debug.Log ( "OPScanner | Scanning for navigation nodes as " + mapType + "..." );
-		
 		GenerateBounds ();
 		GenerateMap ();
-		
-		//Debug.Log ( "OPScanner | ...scan completed" );
 	}
 	
 	function Start () {
@@ -77,14 +74,19 @@ class OPScanner extends MonoBehaviour {
 		}
 	}
 	
-	public function FindPath ( start : Vector3, goal : Vector3 ) : List.<OPNode> {
-		var here : OPNode = GetClosestNode ( start );
-		var there : OPNode = GetClosestNode ( goal );
-		var list : List.<OPNode> = OPAStar.Search ( here, there, map, heuristic );
-	
-		map.Reset ();
-	
-		return list;
+	public function FindPath ( start : Vector3, goal : Vector3, list : List.< OPNode > ) : IEnumerator {
+		if ( !searching ) {
+			searching = true;
+			
+			var here : OPNode = GetClosestNode ( start );
+			var there : OPNode = GetClosestNode ( goal );
+
+			yield StartCoroutine ( astar.Search ( here, there, map, heuristic, list, maxCycles ) );
+		
+			map.Reset ();
+
+			searching = false;
+		}
 	}
 	
 	function OnDrawGizmos () {
@@ -125,18 +127,23 @@ class OPScanner extends MonoBehaviour {
 	}
 	
 	public function GetClosestNode ( pos : Vector3 ) : OPNode {
-		var shortestDistance : float = 100;
+		var shortestDistance : float = Mathf.Infinity;
 		var node : OPNode;
 		
-		for ( var n : OPNode in map.nodes ) {
+		for ( var i : int = 0; i < map.nodes.Length; i++ ) {
+			var n : OPNode = map.nodes[i];
+
 			if ( n == null ) { continue; }
 			
-			var currentDistance : float = ( pos - (n as OPNode).position ).magnitude;
+			var currentDistance : float = Vector3.Distance ( pos, n.position );
 			
-			if ( currentDistance < shortestDistance ) {
+			if ( currentDistance < 0.5 ) {
+				node = n;
+				break;
+		  	
+			} else if ( currentDistance < shortestDistance ) {
 				shortestDistance = currentDistance;
-				node = n as OPNode;
-				
+				node = n;
 			}
 		}
 		

@@ -18,7 +18,7 @@ class OPWayPoint extends MonoBehaviour {
 				var distance : float = ( here - there ).magnitude;
 								
 				Physics.Raycast ( here, direction, hit, distance, layerMask );
-				
+			
 				if ( hit != null && hit.transform == nodeContainer.transform ) {
 					tempList.Add ( nodeContainer.node );
 				}

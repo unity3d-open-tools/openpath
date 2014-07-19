@@ -63,7 +63,7 @@ class OPNavMesh extends MonoBehaviour {
 	}
 	
 	public function GetNodes () : OPNode[] {
-		var mesh : Mesh = this.GetComponent(MeshFilter).mesh;
+		var mesh : Mesh = this.GetComponent(MeshFilter).sharedMesh;
 		var triangleList : List.< Triangle > = new List.< Triangle > ();
 		var allNodes : List.< OPNode > = new List.< OPNode > ();
 		
