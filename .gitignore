@@ -1,1 +1,3 @@
-Example/Library
+*.swp
+Library/*
+Temp/*
